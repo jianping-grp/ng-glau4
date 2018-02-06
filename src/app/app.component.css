@@ -1,0 +1,51 @@
+/*@import "../../node_modules/bootstrap/less/bootstrap";*/
+/*@import "../../node_modules/bootswatch/cerulean/variables.less";*/
+/*@import "../../node_modules/bootswatch/cerulean/bootswatch.less";*/
+
+/*.router-body{*/
+/*margin-top: 100px;*/
+/*}*/
+
+.goback{
+  top: 15%;
+  right: 3%;
+  position: fixed;
+  text-align: center;
+  z-index: 1;
+}
+
+.scrolling-content {
+  overflow: auto;
+}
+
+
+.navbar  .navbar-brand {
+  color: #fff;
+}
+
+
+.navbar-default .navbar-nav>.open>a {
+  background: #178acc;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+
+.dropdown-menu>li>a:hover,  .dropdown-menu>li>a:active {
+  color: #2FA4E7;
+}
+
+.navbar {
+  background-image: linear-gradient(#2FA4E7,#2FA4E7 60%, #2FA4E7);
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #2FA4E7;
+  -webkit-filter: none;
+  filter: none;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-default {
+  background-color: #2FA4E7;
+  border-color: #2FA4E7;
+}

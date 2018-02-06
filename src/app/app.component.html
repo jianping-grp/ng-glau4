@@ -1,0 +1,97 @@
+<!--Progress Bar-->
+<mat-progress-bar *ngIf="loadingStatus"
+                  mode="query"
+                  color="accent"
+                  class="global-progress-bar"
+></mat-progress-bar>
+
+<!--Nav bar-->
+<div class="navbar navbar-default ">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">{{title}}</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="home">HOME</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">COMPOUND<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ><a (click)="goDrugList()">Drugs for Glaucoma Treatment</a></li>
+            <li role="separator" class="divider"></li>
+            <li routerLinkActive="Active"><a [routerLink]="['drug-glau-treatment/drug-for-target']">Drugs Targeting Glaucoma <br/>Related Proteins</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">TARGET<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a (click)="goTargetList()">Proteins Related to Glaucoma</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a hrer="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">PATHWAY<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a (click)="goPathwayList()">Pathways Related to Glaucoma</a></li>
+          </ul>
+        <li><a routerLink="search">SEARCH</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">TOOL<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="search">Similarity Ensemble Approach</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">LINKS<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://lilab.ecust.edu.cn/chemmapper/">Chemmapper</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="http://lilab.ecust.edu.cn/pharmmapper/index.php">Pharmmapper</a></li>
+          </ul>
+        </li>
+        <!--<li><a routerLink="help">HELP</a></li>-->
+        <li><a routerLink="contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<!--<div class="row">-->
+  <!--<div class="col-md-1"></div>-->
+  <!--<div class="col-md-10">-->
+    <!--<router-outlet></router-outlet>-->
+  <!--</div>-->
+  <!--<div class="col-md-1"></div>-->
+<!--</div>-->
+
+<footer>
+  <hr>
+  <div class="container well-lg">
+    Copyright@2017 All Rights Reserved
+  </div>
+</footer>
+
+<!--<div class="goback">-->
+<!--<a (click)="goBack()"><span class="glyphicon glyphicon-share-alt"></span></a>-->
+<!--<p>Back</p>-->
+<!--</div>-->
+
+

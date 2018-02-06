@@ -1,0 +1,39 @@
+<!--data loading -->
+<div *ngIf="loadingStatus">
+  <p class="text-position">Loading...</p>
+</div>
+
+<!--data loading is complete-->
+<div *ngIf="!loadingStatus">
+  <!--data is empty, comounds.length === 0 -->
+  <div *ngIf="isEmpty">
+    <h5>Results of target prediction: no result</h5>
+  </div>
+
+  <!--the data is not empty-->
+  <div *ngIf="!isEmpty">
+    <h5>Results of target prediction</h5>
+    <table width="100%" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+      <tr>
+        <th>Target Name</th>
+        <th>topological-hashed</th>
+        <th>atompair-hashed</th>
+        <th>maccs</th>
+        <th>morgan-hashed</th>
+      </tr>
+      <tr *ngFor="let target of targetPkls">
+        <td>
+          <button mat-button color="primary" (click)="goTargetDetail(target?.chembl_id)">{{target?.chembl_id}}
+          </button>
+        </td>
+        <td>{{target?.topological_hashed}}</td>
+        <td>{{target?.atompair_hashed}}</td>
+        <td>{{target?.maccs}}</td>
+        <td>{{target?.morgan_hashed}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+

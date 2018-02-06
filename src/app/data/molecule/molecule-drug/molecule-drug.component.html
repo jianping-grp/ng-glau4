@@ -1,0 +1,120 @@
+<!--Drugs table-->
+<div *ngIf="drugsIsEmpty">
+  <h5>Drugs {{structureType | titlecase}} Search Result: no result</h5>
+</div>
+<div *ngIf="!drugsIsEmpty">
+  <h5>Drugs {{structureType | titlecase}} Search Result:</h5>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col" *ngFor="let drug of drugs" style="border: 1px solid #ddd">
+      <app-jsme [elementId]="drug?.id"
+                [width]="'220px'"
+                [height]="'250px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="drug?.smiles"
+      ></app-jsme>
+      <button mat-button color="primary" (click)="gotoDrugDetail(drug?.id)">{{drug?.drug_name}}</button>
+      <a (click)="gotoDrugDetail(drug?.id)">({{drug?.drug_state | stringTrim}})</a>
+    </div>
+  </div>
+  <mat-paginator [length]="drugPageMeta?.total_results"
+                 [pageSize]="drugPageMeta?.per_page"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="drugPageChange($event)"
+  >
+  </mat-paginator>
+</div>
+<br/>
+<!--Molecule table-->
+<div *ngIf="moleculesIsEmpty">
+  <h5>Molecule {{structureType | titlecase}} Search Result: no result</h5>
+</div>
+
+<div *ngIf="!moleculesIsEmpty">
+  <h5>Molecule {{structureType | titlecase}} Search Result:</h5>
+  <mat-table #moleculeTable [dataSource]="moleculesDataSource" style="border: 1px solid #ddd">
+    <ng-container matColumnDef="chembl_id">
+      <mat-header-cell *matHeaderCellDef>ChEMBL ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <app-jsme [elementId]="row.id"
+                  [width]="'100px'"
+                  [height]="'100px'"
+                  [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                  [molString]="row.molecule_smile"
+        >
+        </app-jsme>
+        <a [href]="row.molecule_chembl_id_url" target="_blank">
+          <button mat-button color="primary">{{row.molecule_chembl_id}}</button>
+        </a>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="formula">
+      <mat-header-cell *matHeaderCellDef>Formula</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.formula}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mol_weight">
+      <mat-header-cell *matHeaderCellDef>Mol Weight</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.mol_weight}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="alogp">
+      <mat-header-cell *matHeaderCellDef>ALogP</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.alogp}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hba">
+      <mat-header-cell *matHeaderCellDef>HBA</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.hba}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hbd">
+      <mat-header-cell *matHeaderCellDef>HBD</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.hbd}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rtb">
+      <mat-header-cell *matHeaderCellDef>RTB</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.rtb}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="psa">
+      <mat-header-cell *matHeaderCellDef>PSA</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.psa}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="targets">
+      <mat-header-cell *matHeaderCellDef>Targets</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" (click)="goTargetList(row.molecule_chembl_id)">view</button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <!--<div>-->
+    <!--<div class="mdl-grid mdl-grid&#45;&#45;no-spacing">-->
+
+      <!--<mat-form-field class="mdl-cell mdl-cell&#45;&#45;2-col">-->
+        <!--<mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">-->
+          <!--<mat-option *ngFor="let column of allColumns" [value]="column">-->
+            <!--{{column}}-->
+          <!--</mat-option>-->
+        <!--</mat-select>-->
+      <!--</mat-form-field>-->
+      <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col mdl-typography&#45;&#45;text-center">-->
+        <!--<h5 class="mat-header-cell">-->
+          <!--<b>{{tableTitle}}</b>-->
+        <!--</h5>-->
+      <!--</div>-->
+      <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col" >-->
+        <mat-paginator [length]="moleculePageMeta?.total_results"
+                       [pageSize]="moleculePageMeta?.per_page"
+                       [pageSizeOptions]="pageSizeOptions"
+                       (page)="moleculePageChange($event)"
+        >
+        </mat-paginator>
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
