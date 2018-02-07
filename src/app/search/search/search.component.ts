@@ -12,7 +12,7 @@ import {DrugListParamsType} from '../../enum/drug-list-param-type.enum';
 export class SearchComponent implements OnInit {
   structureTypes = ['structure', 'substructure'];
   structureType = this.structureTypes[0];
-  similarity = 0.8;
+  similarity = 0.9;
   constructor(private router: Router,
               private globalService: GlobalService,
               ) { };
