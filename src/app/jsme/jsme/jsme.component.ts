@@ -1,36 +1,65 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+  AfterViewInit, Component, EventEmitter, Input, NgZone, OnChanges, OnDestroy, OnInit,
+  Output, SimpleChanges
+} from '@angular/core';
+import {GlobalService} from '../../service/global/global.service';
+
+declare const JSApplet: any;
 
 @Component({
   selector: 'app-jsme',
   templateUrl: './jsme.component.html',
   styleUrls: ['./jsme.component.css']
 })
-export class JsmeComponent implements OnInit, AfterViewInit {
+export class JsmeComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() elementId: string;
   @Output() onEditorContentChange = new EventEmitter();
-  @Input() width: string = '380px';
-  @Input() height: string = '340px';
+  @Input() width = 380;
+  @Input() height = 340;
   @Input() molString = '';
-  @Input() showDemo: boolean = false;
+  @Input() showDemo = false;
   // Please refer to http://peter-ertl.com/jsme/JSME_2017-02-26/doc.html for JSME options
   @Input() option: string;
   smiles = '';
   applet;
   private _demoSmiles = 'CC(C)(C)C(=O)OC1=C(C=C(C=C1)C(CNC)O)OC(=O)C(C)(C)C';
-  constructor() { }
+
+  constructor(private zone: NgZone, private globalService: GlobalService) {
+  }
 
   ngOnInit() {
-    console.debug('jsme widget init');
+    // console.log('jsme widget init');
   }
-   readMolString(molString: String) {
+
+  readMolString(molString: String) {
     this.applet.readGenericMolecularInput(molString);
   }
+  ngOnChanges(changes: SimpleChanges) {
+    if (typeof (this.applet) !== 'undefined') {
+      if (changes.hasOwnProperty('molString')) {
+        this.applet.readGenericMolecularInput(this.molString);
+      }
+    }
+  }
   ngAfterViewInit() {
-    console.log('JSME init...');
-    setTimeout(() => {
-      console.log(typeof (JSApplet))
-      if (typeof (JSApplet) !== 'undefined' && typeof (this.applet) === 'undefined') {
-        this.applet = new JSApplet.JSME(
+    if (typeof (JSApplet) !== 'undefined') {
+      this.applet = new JSApplet.JSME(
+        this.elementId,
+        this.width,
+        this.height, {
+          options: this.option
+        });
+      if (this.molString) {
+        this.readMolString(this.molString);
+      } else if (this.showDemo) {
+        this.readMolString(this._demoSmiles);
+      }
+      this.applet.setAfterStructureModifiedCallback(() => {
+        this.smiles = this.applet.smiles();
+      });
+    } else {
+      this.globalService.JSMEApplet$.subscribe(jsmeApplet => {
+        this.applet = new jsmeApplet.JSME(
           this.elementId,
           this.width,
           this.height, {
@@ -38,18 +67,14 @@ export class JsmeComponent implements OnInit, AfterViewInit {
           });
         if (this.molString) {
           this.readMolString(this.molString);
-        } else if (this.showDemo) {           // show demo structure
+        } else if (this.showDemo) {
           this.readMolString(this._demoSmiles);
         }
         this.applet.setAfterStructureModifiedCallback(() => {
           this.smiles = this.applet.smiles();
-          console.log('structure modified! current smiles: ' + this.smiles);
-
-        })
-      }
-    }, 1000)
-
+        });
+      });
+    }
   }
-
-
 }
+
