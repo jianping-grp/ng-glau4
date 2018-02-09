@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class RestService {
-  private REST_HOST = 'http://192.168.1.121:9000/api';
+  private REST_HOST = 'http://localhost:8000/api';
   private PER_PAGE = 10;
 
   constructor(private http: HttpClient,
