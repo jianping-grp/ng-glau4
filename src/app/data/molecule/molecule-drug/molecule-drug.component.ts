@@ -91,7 +91,7 @@ export class MoleculeDrugComponent implements OnInit {
   }
 
   gotoDrugDetail(id: number | string) {
-    this.router.navigate(['/drug', id])
+    this.router.navigate(['/drug-glau-treatment', id])
   }
 
   goTargetList(moleculeChemblId: string) {
