@@ -114,11 +114,12 @@ export class RestService {
   private handleError(error: HttpErrorResponse | any ) {
     let errMsg: string;
       if (error instanceof HttpErrorResponse) {
-      errMsg = `${error.status} - ${error.statusText || ''} ${error}`;
-      // this.globalService.setLoading(false);
+        this.globalService.setLoading(false);
+        errMsg = `${error.status} - ${error.statusText || ''} ${error}`;
+
     } else {
-      errMsg = error.message ? error.message : error.toString();
-      // this.globalService.setLoading(false);
+        this.globalService.setLoading(false);
+        errMsg = error.message ? error.message : error.toString();
     }
 
     console.log(errMsg);
