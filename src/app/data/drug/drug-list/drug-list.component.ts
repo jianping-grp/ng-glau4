@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../service/rest/rest.service';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {DrugListParamsType} from '../../../enum/drug-list-param-type.enum';
 import 'rxjs/add/operator/map';
@@ -24,6 +24,7 @@ export class DrugListComponent implements OnInit {
     console.log('drug-list init');
     this.restUrl$ = this._getRestUrl();
   }
+
 
   private _getRestUrl(): Observable<string> {
    return this.route.queryParamMap.map(
