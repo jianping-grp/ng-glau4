@@ -46,9 +46,9 @@ export class TargetListComponent implements OnInit {
         switch (paramsType) {
           case TargetListParamType.target:
             return `target/?${this.includeParams}`;
-          case TargetListParamType.target_name: {
-            const target_name = params.get('target_name');
-            return `target/?filter{protein_description.icontains}=${target_name}${this.includeParams}`;
+          case TargetListParamType.entry_name: {
+            const entryName = params.get('entryName');
+            return `target/?filter{entry_name.icontains}=${entryName}${this.includeParams}`;
           }
           case TargetListParamType.molecule_chembl_id: {
             const moleculeChemblId = params.get('moleculeChemblId');
@@ -57,6 +57,10 @@ export class TargetListComponent implements OnInit {
           case TargetListParamType.pathway_id: {
             const pathwayId = +params.get('pathwayId');
             return `target/?filter{pathway_set.id}=${pathwayId}${this.includeParams}`
+          }
+          case TargetListParamType.target_name: {
+            const targetName = +params.get('targetName');
+            return `target/?filter{protein_description.icontains}${targetName}${this.includeParams}`
           }
         }
       }

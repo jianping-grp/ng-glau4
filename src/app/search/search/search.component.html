@@ -2,7 +2,7 @@
   <h4>Keyword Search:</h4>
   <form #searchFrom="ngForm">
   <div class="input-group">
-    <input class="form-control" placeholder="Please Input Drug name or Target name" #keyword required>
+    <input class="form-control" placeholder="Please Input Drug Name or Target Name or Entry Name" #keyword required>
     <span class="input-group-btn">
       <button mat-raised-button color="primary" (click)="goTargetList(keyword.value)">Target</button>
       <button mat-raised-button color="primary" (click)="goDrugList(keyword.value)">Drug</button>

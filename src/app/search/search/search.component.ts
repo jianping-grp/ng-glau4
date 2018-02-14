@@ -21,9 +21,17 @@ export class SearchComponent implements OnInit {
   }
 
   goTargetList(keyword: string) {
-    this.globalService.gotoTargetList(TargetListParamType.target_name, {
-      target_name: keyword
-    })
+    if (keyword.toUpperCase().endsWith('HUMAN')) {
+      this.globalService.gotoTargetList(TargetListParamType.entry_name, {
+        entryName: keyword
+      })
+    } else {
+      this.globalService.gotoTargetList(TargetListParamType.target_name, {
+        targetName: keyword
+      })
+
+    }
+
   }
 
  goDrugList(drugName: string) {
