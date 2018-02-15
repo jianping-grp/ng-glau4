@@ -4,16 +4,16 @@ import {GlobalService} from "../global/global.service";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/catch';
-import {Molecule} from '../../models/molecule';
 import { catchError } from 'rxjs/operators';
-
+import {environment} from 'environments/environment';
 @Injectable()
 export class RestService {
-  private REST_HOST = 'http://localhost:8000/api';
-  private PER_PAGE = 10;
 
+  private PER_PAGE = 10;
+  private REST_HOST = environment.REST_HOST;
   constructor(private http: HttpClient,
               private globalService: GlobalService) {
+    console.log(`rest host: ${this.REST_HOST}`);
 
   }
 

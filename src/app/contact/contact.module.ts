@@ -3,9 +3,10 @@ import {CommonModule} from '@angular/common';
 import {ContactRoutingModule} from './contact-routing.module';
 import {ContactComponent} from './contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PhoneNumberValidationDirective} from './contact/mobile.validation';
 
 @NgModule({
-  declarations: [ContactComponent],
+  declarations: [ContactComponent, PhoneNumberValidationDirective],
   imports: [
     CommonModule,
     ContactRoutingModule,

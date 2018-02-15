@@ -23,7 +23,7 @@
       <mat-paginator [length]="pageMeta?.total_results"
                      [pageSize]="pageMeta?.per_page"
                      [pageSizeOptions]="pageSizeOptions"
-                     (page)="pageChange(event)"
+                     (page)="pageChange($event)"
       >
       </mat-paginator>
     </div>

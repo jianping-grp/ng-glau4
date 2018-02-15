@@ -14,6 +14,7 @@ export class DrugForTargetsTableComponent implements OnInit {
   drugbankIds: DrugbankId[];
   pageMeta: PageMeta | null;
   restUrl: string;
+  @Input() tableTitle = '';
   @Input() pageSize = 48;
   @Input() pageSizeOptions = [10, 20, 50, 100];
   @Input() restUrl$: Observable<string>;

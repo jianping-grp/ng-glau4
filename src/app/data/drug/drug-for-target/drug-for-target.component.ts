@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../service/rest/rest.service';
 import {DrugbankId} from '../../../models/drugbank-id';
 import {PageMeta} from '../../../models/page-meta';
-import {Target} from '../../../models/target';
 
 @Component({
   selector: 'app-drug-for-target',
