@@ -1,0 +1,27 @@
+<br>
+<h4>Target Prediction</h4>
+<div class="row">
+  <div class="col-md-6">
+    <app-jsme [elementId]="'jsme-demo-id'"
+              #applet
+              [width]="'85%'"
+              [height]="'400px'"
+              [showDemo]="true"
+    >loading JSME widget
+    </app-jsme>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+    <h5>SMILES:</h5>
+    <textarea class="smile-container" [value]="applet.smiles" #smiles1></textarea>
+    <h6 class="font-color">
+      <em>Similarity Ensemble Approach(SEA):</em>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="goTargetPrediction(smiles1.value)"
+      >Target Prediction
+      </button>
+    </h6>
+  </div>
+</div>

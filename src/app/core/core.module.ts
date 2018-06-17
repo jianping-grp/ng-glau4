@@ -1,9 +1,9 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
-import {BrowserModule} from "@angular/platform-browser";
-import {HttpClientModule} from "@angular/common/http";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {RestService} from "../service/rest/rest.service";
-import {GlobalService} from "../service/global/global.service";
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RestService} from '../service/rest/rest.service';
+import {GlobalService} from '../service/global/global.service';
 
 @NgModule({
   imports: [

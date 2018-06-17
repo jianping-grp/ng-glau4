@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JsmeModule} from '../jsme/jsme.module';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule,
@@ -19,6 +19,7 @@ import {PipesModule} from './pipe/pipes.module';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     JsmeModule,
     PipesModule,
     MatCardModule,
@@ -47,6 +48,7 @@ import {PipesModule} from './pipe/pipes.module';
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     JsmeModule,
     PipesModule,
     MatCardModule,

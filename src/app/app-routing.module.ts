@@ -1,40 +1,57 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PageNotFoundComponent} from './error/page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './layout/page/page-not-found/page-not-found.component';
 import {SelectivePreloadingStrategy} from './selective-preloading-strategy';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './layout/page/home/home.component';
 
-import {SearchComponent} from './search/search/search.component';
-import {HelpComponent} from './help/help/help.component';
-import {PathwayListComponent} from './data/pathway/pathway-list/pathway-list.component';
-import {DrugListComponent} from './data/drug/drug-list/drug-list.component';
-import {DrugDetailComponent} from './data/drug/drug-detail/drug-detail.component';
-import {TargetListComponent} from './data/target/target-list/target-list.component';
-import {DrugForTargetComponent} from './data/drug/drug-for-target/drug-for-target.component';
-import {TargetPredictionComponent} from './data/target/target-prediction/target-prediction.component';
-import {TargetDetailComponent} from './data/target/target-detail/target-detail.component';
-import {MoleculeListComponent} from './data/molecule/molecule-list/molecule-list.component';
-import {MoleculeDrugComponent} from './data/molecule/molecule-drug/molecule-drug.component';
+import {SearchComponent} from './layout/page/search/search.component';
+import {HelpComponent} from './layout/page/help/help.component';
+import {PathwayListComponent} from './layout/pathway/pathway-list/pathway-list.component';
+import {DrugListComponent} from './layout/drug/drug-list/drug-list.component';
+import {DrugDetailComponent} from './layout/drug/drug-detail/drug-detail.component';
+import {TargetListComponent} from './layout/target/target-list/target-list.component';
+import {DrugForTargetComponent} from './layout/drug/drug-for-target/drug-for-target.component';
+import {TargetPredictionComponent} from './layout/target/target-prediction/target-prediction.component';
+import {TargetDetailComponent} from './layout/target/target-detail/target-detail.component';
+import {MoleculeListComponent} from './layout/molecule/molecule-list/molecule-list.component';
+import {MoleculeDrugComponent} from './layout/molecule/molecule-drug/molecule-drug.component';
+import {ContactComponent} from "./layout/page/contact/contact.component";
+import {SeaComponent} from "./layout/page/sea/sea.component";
+import {ChemicalScreeningComponent} from "./layout/page/chemical-screening/chemical-screening.component";
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'search', component: SearchComponent},
-
-  {path: 'pathway',
-  loadChildren: 'app/data/pathway/pathway.module#PathwayModule'},
-  {path: 'drug-glau-treatment',
-  loadChildren: 'app/data/drug/drug.module#DrugModule'
+  {path: 'sea', component: SeaComponent},
+  {
+    path: 'pathway',
+    loadChildren: 'app/layout/pathway/pathway.module#PathwayModule'
+  },
+  {
+    path: 'sea',
+    component: SeaComponent,
+  },
+  {
+    path: 'chemical-screening',
+    component: ChemicalScreeningComponent
+  },
+  {
+    path: 'drug-glau-treatment',
+    loadChildren: 'app/layout/drug/drug.module#DrugModule'
   },
   // {path: 'drug-glau-treatment', component: DrugListComponent},
   // {path: 'drug/:id', component: DrugDetailComponent},
-  {path: 'target',
-  loadChildren: 'app/data/target/target.module#TargetModule'},
+  {
+    path: 'target',
+    loadChildren: 'app/layout/target/target.module#TargetModule'
+  },
   // {path: 'drug-for-target', component: DrugForTargetComponent},
   // {path: 'target/:chemblid', component: TargetDetailComponent},
-  {path: 'molecule',
-    loadChildren: 'app/data/molecule/molecule.module#MoleculeModule'
+  {
+    path: 'molecule',
+    loadChildren: 'app/layout/molecule/molecule.module#MoleculeModule'
   },
   // {path: 'molecule-drug', component: MoleculeDrugComponent},
 
@@ -43,9 +60,9 @@ const routes: Routes = [
 
   // {path: 'search', loadChildren: 'app/search/search.module#SearchModule'},
   {path: 'help', component: HelpComponent},
-  {path: 'contact', loadChildren: 'app/contact/contact.module#ContactModule'},
-  // {path: 'data-browse', loadChildren: 'app/data-browse/data-browse.module#DataBrowseModule',
-  // data: {preload: true}},
+  {path: 'contact', component: ContactComponent},
+  // {path: 'layout-browse', loadChildren: 'app/layout-browse/layout-browse.module#DataBrowseModule',
+  // layout: {preload: true}},
   // {path: '**', component: PageNotFoundComponent}
 ];
 

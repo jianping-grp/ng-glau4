@@ -1,8 +1,8 @@
 import {AfterViewChecked, ChangeDetectorRef, Component} from '@angular/core';
 import {GlobalService} from './service/global/global.service';
-import {DrugListParamsType} from './enum/drug-list-param-type.enum';
-import {TargetListParamType} from './enum/target-list-param-type.enum';
-import {PathwayListParamType} from './enum/pathway-list-param-type.enum';
+import {DrugListParamsType} from './glaucoma/enum/drug-list-param-type.enum';
+import {TargetListParamType} from './glaucoma/enum/target-list-param-type.enum';
+import {PathwayListParamType} from './glaucoma/enum/pathway-list-param-type.enum';
 
 @Component({
   selector: 'app-root',

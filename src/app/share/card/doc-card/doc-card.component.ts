@@ -1,5 +1,5 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import {Molecule} from '../../../models/molecule';
+import {Molecule} from '../../../glaucoma/models/molecule';
 import {RestService} from '../../../service/rest/rest.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 

@@ -2,9 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {RestService} from '../../../service/rest/rest.service';
 import {Router} from '@angular/router';
-import {MoleculeStructure} from '../../../models/molecule-structure';
+import {MoleculeStructure} from '../../../glaucoma/models/molecule-structure';
 import {GlobalService} from '../../../service/global/global.service';
-import {TargetListParamType} from '../../../enum/target-list-param-type.enum';
+import {TargetListParamType} from '../../../glaucoma/enum/target-list-param-type.enum';
 
 @Component({
   selector: 'app-molecule-properties-card',

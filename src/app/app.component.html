@@ -29,7 +29,11 @@
           <ul class="dropdown-menu">
             <li ><a (click)="goDrugList()">Drugs for Glaucoma Treatment</a></li>
             <li role="separator" class="divider"></li>
-            <li routerLinkActive="Active"><a [routerLink]="['drug-glau-treatment/drug-for-target']">Drugs Targeting Glaucoma <br/>Related Proteins</a></li>
+            <li routerLinkActive="Active">
+              <a [routerLink]="['drug-glau-treatment/drug-for-target']">
+                Drug targeting glaucoma related<br>
+                proteins for treatment of other diseases
+              </a></li>
           </ul>
         </li>
 
@@ -51,7 +55,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false">TOOL<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="search">Similarity Ensemble Approach</a></li>
+            <li><a routerLink="sea">Target Prediction</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a routerLink="chemical-screening">Chemical Screening</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -71,7 +77,7 @@
 </div>
 
 
-<div class="container">
+<div class="container router-height">
   <router-outlet></router-outlet>
 </div>
 <!--<div class="row">-->
@@ -81,7 +87,6 @@
   <!--</div>-->
   <!--<div class="col-md-1"></div>-->
 <!--</div>-->
-
 <footer>
   <hr>
   <div class="container well-lg">

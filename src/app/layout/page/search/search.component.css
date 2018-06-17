@@ -1,0 +1,28 @@
+.smile-container {
+  width: 95%;
+  height: 150px;
+  float: right;
+  margin-bottom: 0.5cm;
+}
+.font-color {
+  color: #c913f2;
+}
+.slider-width {
+  width: 280px;
+}
+
+.em-color {
+  color: black;
+}
+
+.demo-tab-group {
+  border: 1px solid #e8e8e8;
+}
+
+.demo-tab-content {
+  padding: 16px;
+}
+
+.full-width {
+  width: 100%;
+}

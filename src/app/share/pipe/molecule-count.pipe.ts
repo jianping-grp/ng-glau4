@@ -1,9 +1,9 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {RestService} from '../../service/rest/rest.service';
-import {Molecule} from '../../models/molecule';
+import {Molecule} from '../../glaucoma/models/molecule';
 import {Observable} from 'rxjs/Observable';
-import {Target} from '../../models/target';
-import {MoleculeStructure} from '../../models/molecule-structure';
+import {Target} from '../../glaucoma/models/target';
+import {MoleculeStructure} from '../../glaucoma/models/molecule-structure';
 
 
 @Pipe({

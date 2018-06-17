@@ -49,3 +49,7 @@
   background-color: #2FA4E7;
   border-color: #2FA4E7;
 }
+
+.router-height {
+  min-height: 650px;
+}

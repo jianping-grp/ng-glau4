@@ -1,30 +1,23 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {ContactModule} from './contact/contact.module';
-import {HomeComponent} from './home/home.component';
-
-import {SearchComponent} from './search/search/search.component';
-import {HelpComponent} from './help/help/help.component';
+import {HomeComponent} from './layout/page/home/home.component';
+import {SearchComponent} from './layout/page/search/search.component';
+import {HelpComponent} from './layout/page/help/help.component';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './share/shared.module';
-import {DrugModule} from './data/drug/drug.module';
-import {TargetModule} from './data/target/target.module';
-import {PathwayModule} from './data/pathway/pathway.module';
-import {MoleculeModule} from './data/molecule/molecule.module';
-import {PageNotFoundComponent} from './error/page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './layout/page/page-not-found/page-not-found.component';
+import {PageModule} from "./layout/page/page.module";
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    HelpComponent,
-    SearchComponent,
-    PageNotFoundComponent,
+    AppComponent
   ],
   imports: [
     CoreModule,
     SharedModule,
+    PageModule,
     AppRoutingModule,
   ],
   providers: [],

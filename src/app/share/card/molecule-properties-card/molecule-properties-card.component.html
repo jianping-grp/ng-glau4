@@ -2,7 +2,7 @@
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
   <tr>
     <th>ChEMBL ID</th>
-    <th>
+    <th class="mdl-data-table__cell--non-numeric">
       <a href="{{moleculeStructure?.molecule_chembl_id_url}}" target="_blank">
         {{moleculeStructure?.molecule_chembl_id}}
       </a>
@@ -10,39 +10,39 @@
   </tr>
   <tr>
     <th>Smiles</th>
-    <td>{{moleculeStructure?.molecule_smile}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.molecule_smile}}</td>
   </tr>
   <tr>
     <th>Formula</th>
-    <td>{{moleculeStructure?.formula}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.formula}}</td>
   </tr>
   <tr>
     <th>Mol Weight</th>
-    <td>{{moleculeStructure?.mol_weight}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.mol_weight}}</td>
   </tr>
   <tr>
     <th>AlogP</th>
-    <td>{{moleculeStructure?.alogp}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.alogp}}</td>
   </tr>
   <tr>
     <th>HBD</th>
-    <td>{{moleculeStructure?.hbd}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.hbd}}</td>
   </tr>
   <tr>
     <th>HBA</th>
-    <td>{{moleculeStructure?.hba}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.hba}}</td>
   </tr>
   <tr>
     <th>PSA</th>
-    <td>{{moleculeStructure?.psa}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.psa}}</td>
   </tr>
   <tr>
     <th>RTB</th>
-    <td>{{moleculeStructure?.rtb}}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{moleculeStructure?.rtb}}</td>
   </tr>
   <tr>
     <th>Targets</th>
-    <td>
+    <td class="mdl-data-table__cell--non-numeric">
       <button mat-button color="primary" (click)="goTargetList(moleculeStructure?.molecule_chembl_id); close()">
         {{moleculeStructure?.target_set.length}}
       </button>

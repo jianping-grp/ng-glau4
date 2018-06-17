@@ -1,0 +1,12 @@
+<form>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile"
+           accept=".sdf,.png,.docx"
+           #sdfFile
+           [(ngModel)]="sdfFiles"
+           (change)="fileChange($event, sdfFile.files)"
+           name="sdf-file">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+</form>
