@@ -9,7 +9,7 @@
       <label class="control-label col-md-3" for="name">Name:</label>
       <div class="col-md-6">
         <input class="form-control" id="name" type="text" name="name" placeholder="Name"
-               formControlName="name" required>
+               formControlName="name" r>
       </div>
       <div class="col-md-3" *ngIf="name.invalid && (name.dirty || name.touched)">
         <div *ngIf="name.errors.required" class="text-danger">
@@ -78,10 +78,11 @@
     <div class="form-group">
       <div class="col-md-3 col-md-offset-5">
         <button class="btn btn-warning btn-sm" type="reset" >Reset</button>
-        <button class="btn btn-default btn-sm" type="submit" [disabled]="contactForm.invalid">Submit</button>
+        <button class="btn btn-primary btn-sm" type="submit" [disabled]="contactForm.invalid">Submit</button>
       </div>
     </div>
   </div>
+  <input type="email">
 
 </form>
 </div>

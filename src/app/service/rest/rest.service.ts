@@ -110,6 +110,11 @@ export class RestService {
       .catch(this.handleError)
   }
 
+  //chemical-screening
+  postChemicalScreening(body: any) {
+    return this.http.post(`${this.REST_HOST}/bulk-target-prediction/`, body)
+  }
+
 
   private handleError(error: HttpErrorResponse | any ) {
     let errMsg: string;

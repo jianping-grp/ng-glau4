@@ -14,12 +14,14 @@ import {
   MatSortModule,
 } from '@angular/material';
 import {PipesModule} from './pipe/pipes.module';
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FileUploadModule,
     JsmeModule,
     PipesModule,
     MatCardModule,
@@ -49,6 +51,7 @@ import {PipesModule} from './pipe/pipes.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    FileUploadModule,
     JsmeModule,
     PipesModule,
     MatCardModule,

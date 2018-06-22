@@ -1,12 +1,130 @@
-<form>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile"
-           accept=".sdf,.png,.docx"
-           #sdfFile
-           [(ngModel)]="sdfFiles"
-           (change)="fileChange($event, sdfFile.files)"
-           name="sdf-file">
-    <p class="help-block">Example block-level help text here.</p>
-  </div>
-</form>
+<!--<div class="container">-->
+  <!--<form class="form-horizontal well-lg" #screeningForm="ngForm" (ngSubmit)="onSubmit()">-->
+    <!--<div class="well">-->
+      <!--<br/>-->
+      <!--<div class="form-group">-->
+        <!--<label for="queryFile" class="control-label col-md-3">Query File:</label>-->
+        <!--<div class="col-md-6">-->
+          <!--<input type="file" id="queryFile"-->
+                 <!--accept=".sdf,.png"-->
+                 <!--#sdfFile-->
+                 <!--[(ngModel)]="sdfFiles"-->
+                 <!--(change)="fileChange($event, sdfFile.files)"-->
+                 <!--name="queryFile"-->
+                   <!--required>-->
+          <!--<p class="help-block">Please submit Tripos mol2 or MDL sdf file!.</p>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-md-3" [hidden]="queryFile.valid || queryFile.pristine">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="text-danger">&ndash;&gt;-->
+            <!--&lt;!&ndash;<small>*File is required.</small>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="email" class="control-label col-md-3">Email Address:</label>-->
+        <!--<div class="col-md-6">-->
+          <!--<input type="email" id="email" name="email"-->
+                 <!--required-->
+                 <!--[(ngModel)]="email"-->
+                 <!--#email-->
+                 <!--class="form-control" placeholder="Please input email address"-->
+                  <!--&gt;-->
+        <!--</div>-->
+        <!--<div class="col-md-3" [hidden]="email.valid || email.pristine">-->
+          <!--<div class="text-danger">-->
+            <!--<small>*Email is required</small>-->
+          <!--</div>-->
+          <!--<div class="text-danger">-->
+            <!--<small>*Invalid email</small>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label  class="control-label col-md-3">Selected Target:</label>-->
+        <!--<div class="col-md-6">-->
+          <!--<select id="targetName"  name="targetName"-->
+                  <!--[(ngModel)]="selectedTargetName"-->
+                  <!--class="form-control">-->
+            <!--<option *ngFor="let target of targets" [value]="target?.protein_description">{{target?.protein_description}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<div class="col-md-3 col-md-offset-5">-->
+          <!--<button class="btn btn-warning btn-sm" type="reset" >Reset</button>-->
+          <!--<button class="btn btn-primary btn-sm" type="submit" [disabled]="screeningForm.invalid">Submit</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</form>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <form id="chemicalScreening"  class="form-horizontal well-lg" [formGroup]="chemicalScreeningForm" (ngSubmit)="uploderFile()">
+    <div class="well">
+      <br/>
+      <div class="form-group">
+        <label for="queryFile" class="control-label col-md-3">Query File:</label>
+        <div class="col-md-6">
+          <input type="file" id="queryFile"
+                 accept=".sdf,.mol2,.smi"
+                 ng2FileSelect
+                 [uploader]="uploder"
+                 (change)="fileChange($event)"
+                 formControlName="queryFile"
+                 name="queryFile">
+          <p class="help-block">Please submit Tripos mol2 or MDL sdf file!.</p>
+          <p>{{chemicalScreeningForm.get('queryFile').value}}</p>
+        </div>
+        <div class="col-md-3">
+          <div  class="text-danger">
+            <small>Note: </small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="control-label col-md-3">Email Address:</label>
+        <div class="col-md-6">
+          <input type="email" id="email" name="email"
+                 class="form-control" placeholder="Please input email address"
+                 formControlName="email">
+        </div>
+        <div class="col-md-3" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div class="text-danger" *ngIf="email.errors.required">
+            <small>*Email is required</small>
+          </div>
+          <div class="text-danger" *ngIf="email.errors.email">
+            <small>*Invalid email</small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="targetName" class="control-label col-md-3">Selected Target:</label>
+        <div class="col-md-6">
+          <select name="targetName" id="targetName"
+                  class="form-control"
+                  formControlName="targetName">
+            <option *ngFor="let target of targets" [value]="target?.protein_description">{{target?.protein_description}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-3 col-md-offset-5">
+          <button class="btn btn-warning btn-sm" type="reset" >Reset</button>
+          <button class="btn btn-primary btn-sm" type="submit" [disabled]="chemicalScreeningForm.invalid">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
