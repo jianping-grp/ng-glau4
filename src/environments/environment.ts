@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  REST_HOST: 'http://192.168.1.120:9000/api'
+  REST_HOST: 'http://192.168.1.120:8000/api'
 };

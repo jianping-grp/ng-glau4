@@ -29,8 +29,8 @@ export class SearchComponent implements OnInit {
   targetSelectedType = this.targetSearchTypeList[0].inputType;
   targetKeyword = this.targetSearchTypeList[0].value;
   pathwaySearchTypeList = [
-    {inputType: 'Pathway name', value: 'Cholinergic synapse'},
-    {inputType: 'Pathway ID', value: 'hsa04725'}
+    {inputType: 'Pathway name', value: 'Vascular smooth muscle contraction'},
+    {inputType: 'Pathway ID', value: 'hsa04270'}
   ];
   pathwaySelectedType = this.pathwaySearchTypeList[0].inputType;
   pathwayKeyword = this.pathwaySearchTypeList[0].value;

@@ -1,7 +1,8 @@
 <div class="container">
 <form class="form-horizontal well-lg" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
   <div>
-    <h4 class="title">{{title}}</h4>
+    <h3 class="title">{{title}}</h3>
+    <br/>
   </div>
   <div class="well">
     <br/>
@@ -9,7 +10,7 @@
       <label class="control-label col-md-3" for="name">Name:</label>
       <div class="col-md-6">
         <input class="form-control" id="name" type="text" name="name" placeholder="Name"
-               formControlName="name" r>
+               formControlName="name">
       </div>
       <div class="col-md-3" *ngIf="name.invalid && (name.dirty || name.touched)">
         <div *ngIf="name.errors.required" class="text-danger">
@@ -82,8 +83,6 @@
       </div>
     </div>
   </div>
-  <input type="email">
-
 </form>
 </div>
 

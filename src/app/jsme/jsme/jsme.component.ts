@@ -31,6 +31,7 @@ export class JsmeComponent implements OnInit, AfterViewInit, OnChanges {
     // console.log('jsme widget init');
   }
 
+
   readMolString(molString: String) {
     this.applet.readGenericMolecularInput(molString);
   }

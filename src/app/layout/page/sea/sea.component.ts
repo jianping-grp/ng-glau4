@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {GlobalService} from "../../../service/global/global.service";
+import {JsmeComponent} from "../../../jsme/jsme/jsme.component";
 
 @Component({
   selector: 'app-sea',
@@ -8,7 +9,8 @@ import {GlobalService} from "../../../service/global/global.service";
   styleUrls: ['./sea.component.css']
 })
 export class SeaComponent implements OnInit {
-
+  @ViewChild(JsmeComponent) jsme: JsmeComponent;
+  structure : string;
   constructor(private router: Router,
               private globalService: GlobalService) { }
 
@@ -22,5 +24,7 @@ export class SeaComponent implements OnInit {
       }
     })
   }
+
+
 
 }

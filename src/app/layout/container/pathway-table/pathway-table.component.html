@@ -1,11 +1,11 @@
 <div class="table-section-container">
-  <div *ngIf="isLoading || isLoadingError" class="table-loasding-shade">
+  <div *ngIf="isLoading || isLoadingError" class="table-loading-shade">
     <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
   </div>
   <mat-table #pathwayTable [dataSource]="dataSource"
              matSort matSortDisableClear matSortActive="target_count"
              matSortDirection="desc"
-             class="table-border">
+             class="data-table">
     <ng-container matColumnDef="pathway_id">
       <mat-header-cell *matHeaderCellDef>Pathway ID</mat-header-cell>
       <mat-cell *matCellDef="let row">

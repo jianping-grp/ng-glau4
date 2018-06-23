@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../service/rest/rest.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Target} from '../../../glaucoma/models/target';
@@ -15,8 +15,8 @@ export class ChemicalScreeningComponent implements OnInit {
   targets: Target[] = [];
   inputFile: File;
   chemicalScreeningForm: FormGroup;
-  constructor(private rest: RestService,
-              private el: ElementRef) {
+
+  constructor(private rest: RestService) {
   }
 
 
@@ -27,17 +27,17 @@ export class ChemicalScreeningComponent implements OnInit {
   });
 
 
-
   ngOnInit() {
     this.createForm();
     this._getTargetName();
   }
 
   private _getTargetName() {
-    this.rest.getDataList(`target/?exclude[]=*&include[]=protein_description&sort[]=protein_description`, 0, 999999)
+    this.rest.getDataList(`target/?exclude[]=*&include[]=protein_description` +
+      `&include[]=chemblid&sort[]=protein_description`, 0, 999999)
       .subscribe(data => {
         this.targets = data['targets'];
-        this.targets.unshift({protein_description: 'All'});
+        this.targets.unshift({ chemblid: 'All', protein_description: 'All'});
         console.log(this.targets.length, this.targets)
       })
   }
@@ -46,7 +46,7 @@ export class ChemicalScreeningComponent implements OnInit {
     this.chemicalScreeningForm = new FormGroup({
       queryFile: new FormControl('',),
       email: new FormControl('', [Validators.required, Validators.email]),
-      targetName: new FormControl('All', Validators.required)
+      target: new FormControl('All', Validators.required)
     })
   }
 
@@ -58,68 +58,71 @@ export class ChemicalScreeningComponent implements OnInit {
     return this.chemicalScreeningForm.get('email');
   }
 
-  get targetName() {
-    return this.chemicalScreeningForm.get('targetName');
+  get target() {
+    return this.chemicalScreeningForm.get('target');
   }
 
   fileChange(event: any) {
     this.inputFile = event.target.files[0];
-    const form = this.chemicalScreeningForm.value;
-    const email = form.email;
-    this.uploder.setOptions({additionalParameter:{'email_addr': email}});
-    console.log(this.uploder);
+    this.fileAlert();
+  }
+
+  fileAlert() {
+    const a = this.inputFile.name.lastIndexOf('.sdf'); // 无值为-1.存在值最小为1
+    // const b = this.inputFile.name.lastIndexOf('.mol2');
+    if (a < 0) {
+      alert('Please submit MDL sdf file!')
+    } else if (this.inputFile.size > 5242880) {
+      alert('please submit less than 5M file!')
+    }
   }
 
   onSubmit() {
+    if (!this.inputFile) {
+      alert('Please submit MDL sdf file!')
+    } else if (this.inputFile) {
+      const a = this.inputFile.name.lastIndexOf('.sdf'); // 无值为-1.存在值最小为1
+      // const b = this.inputFile.name.lastIndexOf('.mol2');
+      if (a < 0) {
+        alert('Please submit Tripos mol2 or MDL sdf file!')
+      } else if (this.inputFile.size > 5242880) {
+        alert('please submit less than 5M file!')
+      } else {
+        this.uploaderFile();
+      }
+    }
+
+  }
+
+  uploaderFile() {
     const form = this.chemicalScreeningForm.value;
-    let reader = new FileReader();
-    // console.log(event, file, 'file');
-    reader.readAsText(this.inputFile, 'UTF-8');
-    let readerSdf = reader.onload = function (ev) {
-      var inputFiles = ev.target;
-      alert('文件读取完成');
-      let sdf = ev.target;
-      console.log(sdf);
-      return sdf
+    const emailAddress = form.email;
+    const targetChemblId = form.target;
+    this.uploder.setOptions({
+      additionalParameter: {
+        'email_addr': emailAddress,
+        'target_chemblId': targetChemblId
+      }
+    });
+    console.log(this.uploder, targetChemblId);
+    this.uploder.queue[0].onSuccess = function (response, status, headers) {
+      if (status == 200) {
+        let temRes = JSON.parse(response);
+        console.log('response', temRes);
+        alert('File Submission Successful!');
+      } else {
+        alert('File Submission Failed. Please resubmit the query file!')
+      }
     };
-    const body = {
-      structure_file: readerSdf,
-      email_addr: form.email
-    };
-    this.rest.postChemicalScreening(body);
-    console.log('body', body);
+    this.uploder.queue[0].upload();
     this.rebuildForm();
   }
 
   rebuildForm() {
     this.chemicalScreeningForm.reset({
-      targetName: 'All',
+      target: 'All',
     })
   }
 
-
-  uploderFile() {
-    this.uploder.queue[0].onSuccess = function (response, status, headers) {
-      if (status == 200) {
-        let temRes = JSON.parse(response);
-        console.log('response',temRes);
-        alert('成功');
-      } else {
-        alert('失败')
-      }
-    }
-    this.uploder.queue[0].upload();
-  }
 }
 
-
-
-
-// if (!this.inputFile) {
-//   alert('Please submit Tripos mol2 or MDL sdf file!');
-// } else if (this.inputFile) {
-//   const a = this.inputFile.name.indexOf('.sdf'); // 无值为-1.存在值最小为1
-//   const b = this.inputFile.name.indexOf('.mol2');
-//   if (a + b < 0) {
-//     alert('Please submit Tripos mol2 or MDL sdf file!')
-//   } else {

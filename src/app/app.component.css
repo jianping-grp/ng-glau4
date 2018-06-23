@@ -53,3 +53,15 @@
 .router-height {
   min-height: 650px;
 }
+
+.footer-style {
+  margin-top: 60px;
+  height: 80px;
+  clear: both;
+  background: #f2f3f5;
+  /*border-bottom: .6rem solid;*/
+  /*border-bottom-color: #56cc9d;*/
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

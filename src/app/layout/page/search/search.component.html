@@ -74,7 +74,7 @@
   <h4>Structure Search</h4>
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--6-col">
-        <app-jsme [elementId]="'jsme-demo-id'"
+        <app-jsme [elementId]="'structure-search'"
                   #applet
                   [width]="'85%'"
                   [height]="'400px'"
@@ -85,8 +85,7 @@
       <!--<div class="mdl-cell mdl-cell&#45;&#45;1-col"></div>-->
       <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset" >
         <h5>SMILES:</h5>
-        <textarea class="smile-container" [value]="applet.smiles"
-                  #smiles2></textarea>
+        <textarea class="smile-container" [value]="applet.smiles" #smiles2></textarea>
         <h6>Structure Type:</h6>
         <mat-radio-group [(ngModel)]="structureType">
           <mat-radio-button *ngFor="let typeEl of structureTypes" [value]="typeEl">
