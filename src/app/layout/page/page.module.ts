@@ -22,7 +22,7 @@ import {ChemicalScreeningComponent} from "./chemical-screening/chemical-screenin
     SearchComponent,
     PageNotFoundComponent,
     SeaComponent,
-    ChemicalScreeningComponent
+    ChemicalScreeningComponent,
   ],
   exports: [
     HomeComponent,
@@ -31,7 +31,7 @@ import {ChemicalScreeningComponent} from "./chemical-screening/chemical-screenin
     SearchComponent,
     PageNotFoundComponent,
     SeaComponent,
-    ChemicalScreeningComponent
+    ChemicalScreeningComponent,
   ]
 })
 
