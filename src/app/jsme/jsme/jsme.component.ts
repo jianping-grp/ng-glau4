@@ -14,8 +14,8 @@ declare const JSApplet: any;
 export class JsmeComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() elementId: string;
   @Output() onEditorContentChange = new EventEmitter();
-  @Input() width = 380;
-  @Input() height = 340;
+  @Input() width = '380px';
+  @Input() height = '340px';
   @Input() molString = '';
   @Input() showDemo = false;
   // Please refer to http://peter-ertl.com/jsme/JSME_2017-02-26/doc.html for JSME options

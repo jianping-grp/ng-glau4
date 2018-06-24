@@ -1,6 +1,6 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import {GlobalService} from "../../../service/global/global.service";
+
 import {JsmeComponent} from "../../../jsme/jsme/jsme.component";
 
 @Component({
@@ -10,11 +10,18 @@ import {JsmeComponent} from "../../../jsme/jsme/jsme.component";
 })
 export class SeaComponent implements OnInit {
   @ViewChild(JsmeComponent) jsme: JsmeComponent;
-  structure : string;
-  constructor(private router: Router,
-              private globalService: GlobalService) { }
+  jsmeSmiles: string;
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit() {
+    this.jsmeSmiles = 'CNCC(O)c1ccc(OC(=O)C(C)(C)C)c(OC(=O)C(C)(C)C)c1';
+  }
+
+
+  getJsmeSmiles() {
+    this.jsmeSmiles = this.jsme.smiles;
   }
 
   goTargetPrediction(smiles: string) {

@@ -1,9 +1,9 @@
 <!--Drugs table-->
 <div *ngIf="drugsIsEmpty">
-  <h4>Drugs {{structureType | titlecase}} Search Result: no result</h4>
+  <h4>Drugs for Glaucoma Treatment {{structureType | titlecase}} Search Result: no result</h4>
 </div>
 <div *ngIf="!drugsIsEmpty">
-  <h4>Drugs {{structureType | titlecase}} Search Result:</h4>
+  <h4>Drugs for Glaucoma Treatment {{structureType | titlecase}} Search Result:</h4>
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--3-col box-border" *ngFor="let drug of drugs">
       <app-jsme [elementId]="drug?.id"
@@ -24,6 +24,38 @@
   </mat-paginator>
 </div>
 <br/>
+
+<!--Drug for target-->
+<div *ngIf="drugForTargetsIsEmpty">
+  <h4>Drug targeting glaucoma related proteins for treatment of other diseases
+    {{structureType | titlecase}} Search Result: no result
+  </h4>
+</div>
+<div *ngIf="!drugForTargetsIsEmpty">
+  <h4>Drug targeting glaucoma related proteins for treatment of other diseases
+    {{structureType | titlecase}} Search Result:
+  </h4>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col box-border" *ngFor="let drugForTarget of drugForTargets">
+      <app-jsme [elementId]="drugForTarget?.id + drugForTarget.generic_name"
+                [width]="'220px'"
+                [height]="'250px'"
+                [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
+                [molString]="drugForTarget?.smiles"
+      ></app-jsme>
+      <a href="{{drugForTarget?.url}}">{{drugForTarget?.drug_name}}</a>&nbsp;&nbsp;
+      <a href="{{drugForTarget?.url}}">{{drugForTarget?.generic_name}}</a>
+    </div>
+  </div>
+  <mat-paginator [length]="drugForTargetPageMeta?.total_results"
+                 [pageSize]="drugForTargetPageMeta?.per_page"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="drugForTargetPageChange($event)"
+  >
+  </mat-paginator>
+</div>
+
+
 <!--Molecule table-->
 <div *ngIf="moleculesIsEmpty">
   <h4>Molecule {{structureType | titlecase}} Search Result: no result</h4>
@@ -93,28 +125,28 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
   <!--<div>-->
-    <!--<div class="mdl-grid mdl-grid&#45;&#45;no-spacing">-->
+  <!--<div class="mdl-grid mdl-grid&#45;&#45;no-spacing">-->
 
-      <!--<mat-form-field class="mdl-cell mdl-cell&#45;&#45;2-col">-->
-        <!--<mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">-->
-          <!--<mat-option *ngFor="let column of allColumns" [value]="column">-->
-            <!--{{column}}-->
-          <!--</mat-option>-->
-        <!--</mat-select>-->
-      <!--</mat-form-field>-->
-      <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col mdl-typography&#45;&#45;text-center">-->
-        <!--<h5 class="mat-header-cell">-->
-          <!--<b>{{tableTitle}}</b>-->
-        <!--</h5>-->
-      <!--</div>-->
-      <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col" >-->
-        <mat-paginator [length]="moleculePageMeta?.total_results"
-                       [pageSize]="moleculePageMeta?.per_page"
-                       [pageSizeOptions]="pageSizeOptions"
-                       (page)="moleculePageChange($event)"
-        >
-        </mat-paginator>
-      <!--</div>-->
-    <!--</div>-->
+  <!--<mat-form-field class="mdl-cell mdl-cell&#45;&#45;2-col">-->
+  <!--<mat-select placeholder="Custom displayed columns" multiple [(ngModel)]="displayedColumns">-->
+  <!--<mat-option *ngFor="let column of allColumns" [value]="column">-->
+  <!--{{column}}-->
+  <!--</mat-option>-->
+  <!--</mat-select>-->
+  <!--</mat-form-field>-->
+  <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col mdl-typography&#45;&#45;text-center">-->
+  <!--<h5 class="mat-header-cell">-->
+  <!--<b>{{tableTitle}}</b>-->
+  <!--</h5>-->
   <!--</div>-->
-<!--</div>-->
+  <!--<div class="mdl-cell mdl-cell&#45;&#45;5-col" >-->
+  <mat-paginator [length]="moleculePageMeta?.total_results"
+                 [pageSize]="moleculePageMeta?.per_page"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="moleculePageChange($event)"
+  >
+  </mat-paginator>
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+</div>

@@ -15,8 +15,8 @@
               [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
               [molString]="drug?.smiles"
     ></app-jsme>
-    <a href="https://www.drugbank.ca/drugs/{{drug?.drugbank_id}}">{{drug?.drug_name}}</a>
-    <a href="https://www.drugbank.ca/drugs/{{drug?.drugbank_id}}">{{drug?.drugbank_id}}</a>
+    <a href="{{drug?.url}}">{{drug?.drugbank_id}}</a>&nbsp;&nbsp;
+    <a href="{{drug?.url}}">{{drug?.generic_name}}</a>
   </div>
 </div>
 <div>

@@ -1,27 +1,34 @@
 <br>
-<h4>Target Prediction</h4>
+<h3>Target Prediction</h3>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <app-jsme [elementId]="'sea'"
               #seaApplet
-              [width]="'85%'"
+              [width]="'95%'"
               [height]="'400px'"
               [showDemo]="true"
     >loading JSME widget
     </app-jsme>
   </div>
-  <div class="col-md-1"></div>
+  <div class="col-md-2 content-center">
+    <button mat-raised-button color="accent" (click)="getJsmeSmiles()">
+      Get Smiles
+    </button>
+    <button mat-icon-button (click)="getJsmeSmiles()" color="warn">
+      <mat-icon>trending_flat</mat-icon>
+    </button>
+  </div>
   <div class="col-md-5">
     <h5>SMILES:</h5>
-    <textarea class="smile-container" [value]="seaApplet.smiles" #smiles1></textarea>
-    <h6 class="font-color">
+    <textarea class="smile-container" [value]="jsmeSmiles" #textarea></textarea>
+    <h5 class="font-color">
       <em>Similarity Ensemble Approach(SEA):</em>
       <button
         mat-raised-button
         color="primary"
-        (click)="goTargetPrediction(smiles1.value)"
+        (click)="goTargetPrediction(textarea.value)"
       >Target Prediction
       </button>
-    </h6>
+    </h5>
   </div>
 </div>

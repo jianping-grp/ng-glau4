@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {GlobalService} from '../../../service/global/global.service';
 import {TargetListParamType} from '../../../glaucoma/enum/target-list-param-type.enum';
 import {DrugListParamsType} from '../../../glaucoma/enum/drug-list-param-type.enum';
 import {PathwayListParamType} from "../../../glaucoma/enum/pathway-list-param-type.enum";
+import {JsmeComponent} from '../../../jsme/jsme/jsme.component';
 
 @Component({
   templateUrl: './search.component.html',
@@ -11,6 +12,8 @@ import {PathwayListParamType} from "../../../glaucoma/enum/pathway-list-param-ty
 })
 
 export class SearchComponent implements OnInit {
+  @ViewChild(JsmeComponent) jsme: JsmeComponent;
+  jsmeSmiles: string;
   structureTypes = ['structure', 'substructure'];
   structureType = this.structureTypes[0];
   similarity = 0.9;
@@ -40,6 +43,11 @@ export class SearchComponent implements OnInit {
               ) { };
 
   ngOnInit() {
+    this.jsmeSmiles = 'CNCC(O)c1ccc(OC(=O)C(C)(C)C)c(OC(=O)C(C)(C)C)c1';
+  }
+
+  getJsmeSmiles() {
+    this.jsmeSmiles = this.jsme.smiles;
   }
 
   drugSearchTypeChange(selectedType: string) {
@@ -105,29 +113,6 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  goTargetList(keyword: string) {
-    if (keyword.toUpperCase().endsWith('HUMAN')) {
-      this.globalService.gotoTargetList(TargetListParamType.entry_name, {
-        entryName: keyword
-      })
-    } else {
-      this.globalService.gotoTargetList(TargetListParamType.target_name, {
-        targetName: keyword
-      })
-
-    }
-
-  }
-
- goDrugList(drugName: string) {
-    this.globalService.gotoDrugList(DrugListParamsType.drug_name, {
-      drugName: drugName
-    })
- }
-
-  goTargetPrediction(smiles: string) {
-    this.router.navigate(['target/target-prediction', smiles])
-  }
 
   onSubmit(smiles: string) {
       if (this.structureType === 'structure') {

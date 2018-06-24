@@ -21,7 +21,7 @@ export class ChemicalScreeningComponent implements OnInit {
 
 
   public uploder: FileUploader = new FileUploader({
-    url: `${environment.REST_HOST}/bulk-target-prediction/`,
+    url: `${environment.REST_HOST}/bulk-target-prediction_2/`,
     method: "POST",
     itemAlias: "structure_file"
   });
@@ -84,7 +84,7 @@ export class ChemicalScreeningComponent implements OnInit {
       const a = this.inputFile.name.lastIndexOf('.sdf'); // 无值为-1.存在值最小为1
       // const b = this.inputFile.name.lastIndexOf('.mol2');
       if (a < 0) {
-        alert('Please submit Tripos mol2 or MDL sdf file!')
+        alert('Please submit MDL sdf file!')
       } else if (this.inputFile.size > 5242880) {
         alert('please submit less than 5M file!')
       } else {
@@ -101,7 +101,7 @@ export class ChemicalScreeningComponent implements OnInit {
     this.uploder.setOptions({
       additionalParameter: {
         'email_addr': emailAddress,
-        'target_chemblId': targetChemblId
+        'prediction_type': targetChemblId
       }
     });
     console.log(this.uploder, targetChemblId);
@@ -109,7 +109,7 @@ export class ChemicalScreeningComponent implements OnInit {
       if (status == 200) {
         let temRes = JSON.parse(response);
         console.log('response', temRes);
-        alert('File Submission Successful!');
+        alert('File Submission Successful! The prediction result will be sent to your email.');
       } else {
         alert('File Submission Failed. Please resubmit the query file!')
       }

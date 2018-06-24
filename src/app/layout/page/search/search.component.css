@@ -26,3 +26,11 @@
 .full-width {
   width: 100%;
 }
+
+
+.content-center {
+  height: 240px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
