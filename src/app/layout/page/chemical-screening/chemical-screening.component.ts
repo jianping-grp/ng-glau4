@@ -21,7 +21,7 @@ export class ChemicalScreeningComponent implements OnInit {
 
 
   public uploder: FileUploader = new FileUploader({
-    url: `${environment.REST_HOST}/bulk-target-prediction_2/`,
+    url: `${environment.REST_HOST}/bulk-target-prediction/`,
     method: "POST",
     itemAlias: "structure_file"
   });
