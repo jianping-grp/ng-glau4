@@ -1,21 +1,6 @@
 <!--Drugs table-->
-<!--<div *ngIf="drugsIsEmpty">-->
-  <!--<h4>Drugs for Glaucoma Treatment {{structureType | titlecase}} Search Result: no result</h4>-->
-<!--</div>-->
 <div>
   <h4>Drugs for Glaucoma Treatment {{structureType | titlecase}} Search Result:</h4>
-  <!--<div class="mdl-grid grid-border">-->
-    <!--<div class="mdl-cell mdl-cell&#45;&#45;3-col jsme-border" *ngFor="let drug of drugs">-->
-      <!--<app-jsme [elementId]="drug?.id"-->
-                <!--[width]="'220px'"-->
-                <!--[height]="'250px'"-->
-                <!--[option]="'depict nozoom noshowdraganddropsymbolindepictmode'"-->
-                <!--[molString]="drug?.smiles"-->
-      <!--&gt;</app-jsme>-->
-      <!--<button mat-button color="primary" (click)="gotoDrugDetail(drug?.id)">{{drug?.drug_name}}</button>-->
-      <!--<a (click)="gotoDrugDetail(drug?.id)">({{drug?.drug_state | stringTrim}})</a>-->
-    <!--</div>-->
-  <!--</div>-->
   <mat-table #drugTable [dataSource]="drugDataSource" class="box-border data-table">
     <ng-container matColumnDef="drugbank_id">
       <mat-header-cell *matHeaderCellDef>DrugBank ID</mat-header-cell>
@@ -88,11 +73,6 @@
 <br/>
 
 <!--Drug for target-->
-<!--<div *ngIf="drugForTargetsIsEmpty">-->
-  <!--<h4>Drug targeting glaucoma related proteins for treatment of other diseases-->
-    <!--{{structureType | titlecase}} Search Result: no result-->
-  <!--</h4>-->
-<!--</div>-->
 <div>
   <h4>Drug targeting glaucoma related proteins for treatment of other diseases
     {{structureType | titlecase}} Search Result:
