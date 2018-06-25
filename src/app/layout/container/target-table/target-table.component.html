@@ -4,6 +4,8 @@
   </div>
   <mat-table #TargetsTable [dataSource]="dataSource"
              matSort
+             matSortActive="uniprot_accession"
+             matSortDirection="desc"
              class="data-table">
     <ng-container matColumnDef="chembl_id" >
       <mat-header-cell *matHeaderCellDef>ChEMBL ID</mat-header-cell>
@@ -94,7 +96,7 @@
           <!--{{getCompound(row.id)}}-->
           <!--{{row.chembl_small_molecules_structure_info.length}}-->
           {{row.compound_count}}
-          <ng-container *ngIf="!row.compound_count">0</ng-container>
+          <!--<ng-container *ngIf="!row.compound_count">0</ng-container>-->
         </button>
       </mat-cell>
     </ng-container>
@@ -106,7 +108,7 @@
           <!--{{row.chembl_small_molecules_all_infos.length}}-->
           <!--{{row.id | moleculeCount: 'bioactivities' | async}}-->
           {{row.bioactivity_count}}
-          <ng-container *ngIf="!row.bioactivity_count">0</ng-container>
+          <!--<ng-container *ngIf="!row.bioactivity_count">0</ng-container>-->
         </button>
       </mat-cell>
     </ng-container>
@@ -118,7 +120,7 @@
           <!--{{getReferences(row.id)}}-->
           <!--({{// row.id | moleculeCount: 'references' | async}})-->
           {{row.reference_count}}
-          <ng-container *ngIf="!row.reference_count">0</ng-container>
+          <!--<ng-container *ngIf="!row.reference_count">0</ng-container>-->
         </button>
       </mat-cell>
     </ng-container>

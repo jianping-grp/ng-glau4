@@ -26,7 +26,7 @@ export class DrugSearchComponent implements OnInit {
       } else if (params.has('drugName')) {
         const drugName = params.get('drugName');
         this.drugRestUrl$ = observableOf(`drugs/?filter{drug_name.icontains}=${drugName}`);
-        this.drugForTargetRestUrl$ = observableOf(`drugbankid/?filter{drug_name.icontains}=${drugName}`);
+        this.drugForTargetRestUrl$ = observableOf(`drugbankid/?filter{generic_name.icontains}=${drugName}`);
       }
    })
   }

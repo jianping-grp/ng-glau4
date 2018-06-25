@@ -11,13 +11,13 @@
         <label for="queryFile" class="control-label col-md-3">Query File:</label>
         <div class="col-md-6">
           <input type="file" id="queryFile"
-                 accept=".sdf"
+                 accept=".sdf, .smi"
                  ng2FileSelect
                  [uploader]="uploder"
                  (change)="fileChange($event)"
                  formControlName="queryFile"
                  name="queryFile">
-          <p class="help-block">Please submit MDL sdf file!</p>
+          <p class="help-block">Please submit MDL sdf or SMILES format file!</p>
         </div>
         <div class="col-md-3">
           <div  class="text-danger">
@@ -61,7 +61,7 @@
     <div class="col-md-8 col-md-offset-2">
       <h5 class="text-danger">Note:</h5>
       <ul>
-        <li>ONLY MDL SDF formats are supported</li>
+        <li>ONLY MDL SDF and SMILES formats are supported</li>
         <li>Both 2D and 3D structures can be used in the input file</li>
         <li>Only 100 molecules can be predicted at a time,
           Do not submit files with more than 100 molecules</li>

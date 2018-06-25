@@ -1,4 +1,4 @@
-<h4>Drug targeting glaucoma related proteins for treatment of other diseases</h4>
+<h4>List of Drug targeting glaucoma related proteins for treatment of other diseases</h4>
 <mat-label>Selected by Target Name:&nbsp;</mat-label>
 <mat-form-field mdl-cell mdl-cell--2-col>
   <mat-select [(ngModel)]="selectedTargetName" (change)="getDrugbankIds()"
@@ -7,8 +7,8 @@
   </mat-select>
 </mat-form-field>
 
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--3-col grid-border" *ngFor="let drug of drugbankIds">
+<div class="mdl-grid grid-border">
+  <div class="mdl-cell mdl-cell--3-col jsme-border" *ngFor="let drug of drugbankIds">
     <app-jsme [elementId]="drug?.id"
               [width]="'220px'"
               [height]="'250px'"

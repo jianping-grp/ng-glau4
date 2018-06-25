@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {RestService} from '../../../service/rest/rest.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {PageMeta} from '../../../glaucoma/models/page-meta';
 import {Drug} from '../../../glaucoma/models/drug';
-import {MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource} from '@angular/material';
 import {GlobalService} from '../../../service/global/global.service';
 import {TargetListParamType} from '../../../glaucoma/enum/target-list-param-type.enum';
 import {MoleculeStructure} from '../../../glaucoma/models/molecule-structure';
@@ -17,20 +17,20 @@ import {DrugbankId} from '../../../glaucoma/models/drugbank-id';
 })
 
 export class MoleculeDrugComponent implements OnInit, OnDestroy {
+  @ViewChild(MatSort) sort: MatSort;
   smiles: string;
   body: object;
   structureType: string;
   drugPageMeta: PageMeta | null;
   moleculePageMeta: PageMeta | null;
   drugForTargetPageMeta: PageMeta | null;
-  molecules: MoleculeStructure[] | null;
   moleculesDataSource = new MatTableDataSource();
+  drugDataSource = new MatTableDataSource();
+  drugForTargetDataSource = new MatTableDataSource();
   drugs: Drug[] | null;
-  drugsIsEmpty = false;
-  drugForTargetsIsEmpty = false;
   tableTitle = '';
+  molecules: MoleculeStructure[] | null;
   drugForTargets: DrugbankId[] | null;
-  moleculesIsEmpty = false;
   moleculeSubscription: Subscription;
   drugSubscription: Subscription;
   drugForTargetSubscription: Subscription;
@@ -39,6 +39,8 @@ export class MoleculeDrugComponent implements OnInit, OnDestroy {
   drugIncludeParams = '&sort[]=id&exclude[]=pathway_set.*&exclude[]=targets.*';
   displayedColumns = ['chembl_id', 'formula', 'mol_weight', 'alogp', 'psa', 'rtb', 'hbd', 'hba', 'targets'];
   allColumns = ['chembl_id', 'formula', 'mol_weight', 'alogp', 'psa', 'rtb', 'hbd', 'hba', 'targets'];
+  drugDisplayedColumns = ['drugbank_id', 'drug_name', 'formula', 'mol_weight', 'alogp', 'psa', 'rtb', 'hbd', 'hba'];
+  drugForTargetDisplayedColumns = ['drugbank_id', 'drug_name', 'formula', 'mol_weight', 'alogp', 'psa', 'rtb', 'hbd', 'hba'];
 
   constructor(private rest: RestService,
               private router: Router,
@@ -50,8 +52,8 @@ export class MoleculeDrugComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('molecule drug init');
     this._postMoleculeDrug();
-    // this.postMolecules();
   }
+
 
   ngOnDestroy() {
     this.drugSubscription.unsubscribe();
@@ -65,14 +67,14 @@ export class MoleculeDrugComponent implements OnInit, OnDestroy {
       this.smiles = params.get('smiles');
       if (this.structureType === 'substructure') {
         this.body = {smiles: this.smiles, similarity: 0, substructure_search: 1};
-        this._postDrugs(0,8);
-        this._postDrugForTarget(0, 8);
+        this._postDrugs(0,5);
+        this._postDrugForTarget(0, 5);
         this._postMolecules(0,5);
       } else if (this.structureType === 'structure') {
         const similarity = params.get('similarity');
         this.body = {smiles: this.smiles, similarity: similarity, substructure_search: 0};
-        this._postDrugs(0,8);
-        this._postDrugForTarget(0, 8);
+        this._postDrugs(0,5);
+        this._postDrugForTarget(0, 5);
         this._postMolecules(0,5);
       }
     })
@@ -87,9 +89,6 @@ export class MoleculeDrugComponent implements OnInit, OnDestroy {
           this.moleculePageMeta = data['meta'];
           // 去掉重复的小分子结构
           this.moleculesDataSource.data = this.molecules;
-        if (this.molecules === undefined) {
-          this.moleculesIsEmpty = true;
-        }
       })
   }
 
@@ -98,9 +97,7 @@ export class MoleculeDrugComponent implements OnInit, OnDestroy {
       .subscribe(data => {
           this.drugs = data['drugs'];
           this.drugPageMeta = data['meta'];
-        if (this.drugs === undefined) {
-          this.drugsIsEmpty = true;
-        }
+          this.drugDataSource.data = this.drugs;
       })
   }
 
@@ -109,9 +106,7 @@ export class MoleculeDrugComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.drugForTargets = data['drug_bank_ids'];
         this.drugForTargetPageMeta = data['meta'];
-        if (this.drugForTargets === undefined) {
-          this.drugForTargetsIsEmpty = true;
-        }
+        this.drugForTargetDataSource.data = this.drugForTargets;
       })
   }
 
@@ -124,6 +119,7 @@ export class MoleculeDrugComponent implements OnInit, OnDestroy {
       moleculeChemblId: moleculeChemblId,
     })
   }
+
 
   drugPageChange(event) {
     this._postDrugs(event.pageIndex, event.pageSize)
