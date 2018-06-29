@@ -21,6 +21,7 @@ export class RestService {
     this.globalService.setLoading(true);
     return this.http.get(`${this.REST_HOST}/${url}`)
     .finally(() => this.globalService.setLoading(false))
+      .catch(this.handleError)
   }
 
   public getDataList(url: string,
@@ -38,6 +39,7 @@ export class RestService {
     }
     return this.http.get(`${this.REST_HOST}/${url}${extraParam}&page=${page}&per_page=${perPage}${sortParam}`)
       .finally(() => {this.globalService.setLoading(false)})
+      .catch(this.handleError)
   }
 
 

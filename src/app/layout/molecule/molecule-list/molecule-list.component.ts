@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RestService} from '../../../service/rest/rest.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Molecule} from '../../../glaucoma/models/molecule';
@@ -6,6 +6,7 @@ import {PageMeta} from '../../../glaucoma/models/page-meta';
 import {MatDialog} from '@angular/material';
 import {DocCardComponent} from '../../../share/card/doc-card/doc-card.component';
 import {MoleculePropertiesCardComponent} from '../../../share/card/molecule-properties-card/molecule-properties-card.component';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-molecule-list',
@@ -13,15 +14,17 @@ import {MoleculePropertiesCardComponent} from '../../../share/card/molecule-prop
   styleUrls: ['./molecule-list.component.css']
 })
 
-export class MoleculeListComponent implements OnInit {
+export class MoleculeListComponent implements OnInit, OnDestroy {
   molecules: Molecule[] | null;
   tempArr: Molecule[] | null;
   targetName: string;
   targetId: number;
-  tableTitle = ''
+  tableTitle = '';
   newMolecules = [];
   pageMeta: PageMeta | null;
-  selectedType = 'notEmpty'
+  selectedType = 'notEmpty';
+  moleculeSubscription: Subscription;
+  targetIdSubscription: Subscription;
   pageSizeOptions = [5, 10, 20, 50, 100];
   displayedColumns = ['chembl_id', 'standard_value', 'standard_type', 'doc_chembl_id', 'doc_title', 'doc_pubmed_id'];
 
@@ -36,19 +39,26 @@ export class MoleculeListComponent implements OnInit {
     this._getMolecules();
   }
 
+  ngOnDestroy() {
+    this.targetIdSubscription.unsubscribe();
+    this.moleculeSubscription.unsubscribe();
+  }
+
   private _getMolecules(page?, perPage?) {
-    this.route.queryParamMap.subscribe((params: ParamMap) => {
+    this.targetIdSubscription = this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.targetId = +params.get('targetId');
       this.targetName = params.get('targetName');
       // fetch molecule layout sort by molecule_chembl_id;
-      this.rest.getDataList(`target-related-mol-chembl/?filter{target_set.id}=${this.targetId}&sort[]=molecule_chembl_id`, page, perPage)
+      this.moleculeSubscription = this.rest.getDataList(`target-related-mol-chembl/?filter{target_set.id}=${this.targetId}&sort[]=molecule_chembl_id`, page, perPage)
         .subscribe(data => {
           this.molecules = data['ch_embl_small_molecule_all_infos'];
           console.log('molecule', this.molecules, 'data', data);
           this.pageMeta = data['meta'];
           this.molecules.push(this.molecules[0]);  // 不添加 newMolecule二维数组中的数组的length会小于10
           this.activityFilter();
-        })
+        },
+          error => {},
+          () => {})
     })
   }
 
@@ -60,7 +70,7 @@ export class MoleculeListComponent implements OnInit {
       const moleculesFilter = this.molecules.filter(function (molecule: Molecule) {
         return molecule.activity_standard_value !== null ;
       });
-      console.log('filterMolecules', moleculesFilter);
+      // console.log('filterMolecules', moleculesFilter);
       this._newMolecules(moleculesFilter);
     }
   }
@@ -70,7 +80,7 @@ export class MoleculeListComponent implements OnInit {
     this.newMolecules = [];
     this.tempArr = [];
     for (let i = 0, j = molecules.length; i < j; i++) {
-      if (molecules[i]['molecule_chembl_id']=== molecules[i + 1]['molecule_chembl_id']) {
+      if (molecules[i]['molecule_chembl_id'] === molecules[i + 1]['molecule_chembl_id']) {
         this.tempArr.push(molecules[i]);
       } else {
         this.tempArr.push(molecules[i]);
