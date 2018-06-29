@@ -72,8 +72,8 @@ export class ChemicalScreeningComponent implements OnInit {
     const b = this.inputFile.name.lastIndexOf('.smi');
     if (a + b < 0) {
       alert('Please submit MDL sdf or SMILES format file!')
-    } else if (this.inputFile.size > 52428800) {
-      alert('please submit less than 50M file!')
+    } else if (this.inputFile.size > 41943040) {
+      alert('please submit less than 40M file!')
     }
   }
 
@@ -85,8 +85,8 @@ export class ChemicalScreeningComponent implements OnInit {
       const b = this.inputFile.name.lastIndexOf('.mol2');
       if (a + b < 0) {
         alert('Please submit MDL sdf or SMILES format file!')
-      } else if (this.inputFile.size > 52428800) {
-        alert('please submit less than 50M file!')
+      } else if (this.inputFile.size > 41943040) {
+        alert('please submit less than 40M file!')
       } else {
         this.uploaderFile();
       }
