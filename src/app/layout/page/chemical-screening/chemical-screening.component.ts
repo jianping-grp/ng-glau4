@@ -82,7 +82,7 @@ export class ChemicalScreeningComponent implements OnInit {
       alert('Please submit MDL sdf or SMILES format file!')
     } else if (this.inputFile) {
       const a = this.inputFile.name.lastIndexOf('.sdf'); // 无值为-1.存在值最小为1
-      const b = this.inputFile.name.lastIndexOf('.mol2');
+      const b = this.inputFile.name.lastIndexOf('.smi');
       if (a + b < 0) {
         alert('Please submit MDL sdf or SMILES format file!')
       } else if (this.inputFile.size > 41943040) {
@@ -108,7 +108,7 @@ export class ChemicalScreeningComponent implements OnInit {
     this.uploder.queue[0].onSuccess = function (response, status, headers) {
       if (status == 200) {
         let temRes = JSON.parse(response);
-        console.log('response', temRes);
+        // console.log('response', temRes);
         alert('File Submission Successful! The prediction result will be sent to your email.');
       } else {
         alert('File Submission Failed. Please resubmit the query file!')
