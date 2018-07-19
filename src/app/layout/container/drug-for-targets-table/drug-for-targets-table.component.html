@@ -1,4 +1,4 @@
-<h4>List of Drug targeting glaucoma related proteins for treatment of other diseases</h4>
+<h4>List of Drugs for Treatment of Other Disease</h4>
 <div class="mdl-grid grid-border">
   <div class="mdl-cell mdl-cell--3-col jsme-border" *ngFor="let drug of drugbankIds">
     <app-jsme [elementId]="drug?.id"
@@ -7,8 +7,8 @@
               [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
               [molString]="drug?.smiles"
     ></app-jsme>
-    <a href="{{drug?.url}}">{{drug?.drugbank_id}}</a>&nbsp;&nbsp;
-    <a href="{{drug?.url}}">{{drug?.generic_name}}</a>
+    <a href="{{drug?.url}}" target="_blank">{{drug?.drugbank_id}}</a>&nbsp;&nbsp;
+    <a href="{{drug?.url}}" target="_blank">{{drug?.generic_name}}</a>
   </div>
 </div>
 <div>

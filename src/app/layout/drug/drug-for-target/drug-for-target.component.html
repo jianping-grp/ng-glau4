@@ -1,4 +1,4 @@
-<h4>List of Drug targeting glaucoma related proteins for treatment of other diseases</h4>
+<h4>List of Drugs for Treatment of Other Disease</h4>
 <mat-label>Selected by Target Name:&nbsp;</mat-label>
 <mat-form-field mdl-cell mdl-cell--2-col>
   <mat-select [(ngModel)]="selectedTargetName" (change)="getDrugbankIds()"
@@ -15,8 +15,8 @@
               [option]="'depict nozoom noshowdraganddropsymbolindepictmode'"
               [molString]="drug?.smiles"
     ></app-jsme>
-    <a href="{{drug?.url}}">{{drug?.drugbank_id}}</a>&nbsp;&nbsp;
-    <a href="{{drug?.url}}">{{drug?.generic_name}}</a>
+    <a href="{{drug?.url}}" target="_blank">{{drug?.drugbank_id}}</a>&nbsp;&nbsp;
+    <a href="{{drug?.url}}" target="_blank">{{drug?.generic_name}}</a>
   </div>
 </div>
 <div>

@@ -21,7 +21,7 @@ export class TargetListComponent implements OnInit {
     '&exclude[]=drug_set.*&include[]=drug_set.id' +
     '&exclude[]=pathway_set.*&include[]=pathway_set.id';
   pageMeta: PageMeta | null;
-
+  title = 'Target List'
   displayedColumns = ['chembl_id', 'target_name', 'keggid', 'uniprot_accession', 'entry_name',
     'gene',
     // 'pdbid','detail', 'type', 'drug',
@@ -48,6 +48,7 @@ export class TargetListComponent implements OnInit {
           case TargetListParamType.target:
             return `target/?${this.includeParams}`;
           case TargetListParamType.entry_name: {
+            this.title = 'Target Search Results';
             const entryName = params.get('entryName');
             return `target/?filter{entry_name.icontains}=${entryName}${this.includeParams}`;
           }
@@ -60,14 +61,17 @@ export class TargetListComponent implements OnInit {
             return `target/?filter{pathway_set.id}=${pathwayId}${this.includeParams}`
           }
           case TargetListParamType.target_name: {
+            this.title = 'Target Search Results';
             const targetName = params.get('targetName');
             return `target/?filter{protein_description.icontains}=${targetName}${this.includeParams}`
           }
           case TargetListParamType.gene_name: {
+            this.title = 'Target Search Results';
             const geneName = params.get('geneName');
             return `target/?filter{gene}=${geneName}${this.includeParams}`
           }
           case TargetListParamType.chembl_id: {
+            this.title = 'Target Search Results';
             const chemblId = params.get('chemblId');
             return `target/?filter{chemblid}=${chemblId}${this.includeParams}`
           }

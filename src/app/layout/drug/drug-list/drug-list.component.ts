@@ -12,8 +12,7 @@ import 'rxjs/add/operator/map';
 })
 
 export class DrugListComponent implements OnInit {
-
- restUrl$: Observable<string>;
+  restUrl$: Observable<string>;
   includeParam = '&exclude[]=*&include[]=smiles' +
     '&include[]=drug_name&include[]=id&include[]=drug_state';
   constructor(private rest: RestService,

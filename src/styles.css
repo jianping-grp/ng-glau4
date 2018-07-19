@@ -97,7 +97,7 @@ footer {
 }
 .data-table {
   overflow: auto;
-  min-height: 400px;
+  min-height: 350px;
   max-height: 100%;
   border: #ddd solid 1px;
 }

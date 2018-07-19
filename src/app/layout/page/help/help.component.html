@@ -2,59 +2,56 @@
 <br/>
 <mat-card>
  <mat-card-content>
-   <p>1.The homepage contains eight menu bars, including home, compound, target,
-     pathway, search, tool, links, help and contact. To browse the entries,
-     the users can click the each sub-menus in the compound, target and pathway.
-     The corresponding entries will be displayed.
+   <p>1.The homepage contains nine pull-down menus: home, compound, target,
+     pathway, search, tool, links, help and contact in the toolbar, and users
+     can browse relevant entries by clicking their sub-menus. The corresponding
+     entries will be displayed.
    </p>
-   <img mat-card-image src="assets/img/Picture1.png">
+   <img mat-card-image src="assets/image/Picture1.png">
    <mat-divider></mat-divider>
    <br/>
    <br/>
-   <p>2.In the search page, users can obtain the entries of glaucoma-related
-     drugs and proteins by searching various keywords, such as drug name and
-     protein name of interest in the “Keyword Search” page. Alternatively, users
-     can search specific structure by sketching in the “Structure Search” page.
-     Users can specify structure types for query, such as substructure search
-     and similarity search. A compound similarity or substructure search of the
-     GCDB can then be carried out to retrieve compounds similar to or containing
-     the input molecule.
+   <p>2.In the search page, users can search various keywords, such as drug
+     name and protein name. Alternatively, users can search a specific structure
+     by sketching it in the JME applet window. Users can specify structure types
+     for query, such as substructure search and similarity search, and click the
+     “Search” button to deliver a query molecule to GCDB Server. The bioactive
+     molecules are returned with 3D similar to query molecule.
    </p>
-   <img mat-card-image src="assets/img/Picture2.png" class="img">
+   <img mat-card-image src="assets/image/Picture2.png" class="img">
    <mat-divider></mat-divider>
    <br/>
    <br/>
-   <p>3.In the tool page, users can sketch a structure of interest in the JME
-     applet window or input a molecule in SMILES format into the “SMILES” txt box
-     in the “Target Identification” sub-menus for identifying the potential
-     glaucoma-related proteins. After clicking “Target Prediction” button, a list
-     of potential protein targets will be returned in the result page after 1 ~ 2 min.
-     The predictive results of multiple-voting SEA model are based on four types of
-     molecular fingerprints - topological, atom pair, maccs and morgan. Significance
-     level of P value in each fingerprint prediction is used to indicate the
-     significance of raw similarity score. Predictions with P value ≤ 0.05 are
-     considered as promising targets.
+   <p>3.In the tool page, users can utilise the SEA online computing algorithm
+     tool to predict possible targets of a query molecule by clicking the “Target
+     Identification” sub-menu. Users can sketch a structure in the JME applet window
+     or input a molecule in SMILES format into the “SMILES” txt box as the query, and
+     click “Target Prediction” button to submit a job. The potential protein targets
+     will be returned in the result page after 2 ~ 3 min. The potential protein targets
+     are returned based on the predictive results of a multiple-voting SEA model with
+     four types of molecular fingerprints - topological, atom pair, maccs and morgan.
+     The P-value is used to indicate the significance of the raw similarity score.
+     Predictions with significance level P-values ≤ 0.05 are considered promising targets.
    </p>
-   <img mat-card-image src="assets/img/Picture3.png">
+   <img mat-card-image src="assets/image/Picture3.png">
    <br/><br/>
-   <p>Users also can upload a file with multiple molecules(at most 1000) stored in SDF or SMILES
-     format in the “Chemical Screening” sub-menus and provide a valid e-mail address
-     for receiving calculation results. Based on users' preferences, single protein
-     can be selected one time in the pull-down menus as the target for virtual screening.
-     After uploading the molecules, click the “Submit” button to submit user’s job.
-     Having retrieving a list of compounds, the potential targets can be calculated
-     on the backend server of GCDB. A typical run containing a molecule takes 1~2 min,
-     while the run time will depend on the number of molecules.
+   <p>Users can upload a file with multiple molecules (at most 1000) stored in sdf or
+     SMILES formats via “Chemical Screening” sub-menus and provide a valid e-mail address
+     for receiving calculation results. A single protein can be selected one time in the
+     pull-down menus as the target for virtual screening. Users can click the “Submit”
+     button to deliver the query molecules to GCDB Server. After retrieving the users’
+     job successfully, the calculation starts on the backend server of GCDB. A typical
+     run containing a molecule takes 2 ~ 3 min, while the run time will depend on the
+     number of molecules.
    </p>
-   <img mat-card-image src="assets/img/Picture4.png">
+   <img mat-card-image src="assets/image/Picture4.png">
    <mat-divider></mat-divider>
    <br/>
    <br/>
-   <p>4.In the links page, users can access to two independent algorithms -
-     “PharmMapper” and “ChemMapper” based on ligand structure predictions using
-     pharmacophore mapping approach and the molecular 3D similarity calculation
-     strategies to identify potential target candidates for the given compounds,
-     respectively.
+   <p>4.In the links page, users can access to two independent algorithms
+     - “PharmMapper” and “ChemMapper” that use pharmacophore mapping approach and
+     the molecular 3D similarity calculation strategies, respectively, to identify
+     potential target candidates for the desired molecules.
    </p>
    <mat-divider></mat-divider>
    <br/>

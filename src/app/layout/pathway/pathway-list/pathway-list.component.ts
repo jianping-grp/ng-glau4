@@ -17,7 +17,7 @@ export class PathwayListComponent implements  OnInit {
   displayedColumns = ['pathway_id', 'pathway_name', 'target_count', 'drug_count'];
   includeParams = '&exclude[]=targets.*&include[]=targets.id' +
                   '&exclude[]=drugs.*&include[]=drugs.id';
-
+  title = 'Pathway List';
   constructor(private rest: RestService,
               private route: ActivatedRoute) { }
 
@@ -37,10 +37,12 @@ export class PathwayListComponent implements  OnInit {
             return `pathway/?filter{targets.id}=${targetId}${this.includeParams}`
           }
           case PathwayListParamType.pathway_id: {
+            this.title = 'Pathway Search Results';
             const pathwayId = params.get('pathwayId');
             return `pathway/?filter{pathway_name}=${pathwayId}${this.includeParams}`
           }
           case PathwayListParamType.pathway_name: {
+            this.title = 'Pathway Search Results';
             const pathwayName = params.get('pathwayName');
             return `pathway/?filter{descripor.icontains}=${pathwayName}${this.includeParams}`
           }
